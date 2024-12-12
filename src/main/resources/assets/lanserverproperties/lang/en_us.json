@@ -1,0 +1,7 @@
+{
+  "lanserverproperties.gui.online_mode": "Allow offline players to enter",
+  "lanserverproperties.gui.online_mode_desc": "This option will be set to allow offline players to join",
+  "lanserverproperties.gui.port": "Port",
+  "lanserverproperties.gui.allow": "Allow",
+  "lanserverproperties.gui.notallow": "Not Allow"
+}

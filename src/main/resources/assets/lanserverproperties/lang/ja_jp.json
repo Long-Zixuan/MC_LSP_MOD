@@ -1,0 +1,7 @@
+{
+  "lanserverproperties.gui.online_mode": "オフラインプレイヤーの入場を許可するかどうか",
+  "lanserverproperties.gui.online_mode_desc": "このオプションでは、正規版以外（オフライン）プレイヤーの参加を許可するように設定されています",
+  "lanserverproperties.gui.port": "オンラインポート番号",
+  "lanserverproperties.gui.allow": "許可する",
+  "lanserverproperties.gui.notallow": "許可しない"
+}
