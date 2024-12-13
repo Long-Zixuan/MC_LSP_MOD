@@ -53,7 +53,7 @@ public class OpenToLanScreenEx
 
 		// Text field for port
 		group.tfwPort =
-				new IPAddressTextField(textRenderer, gui.width / 2 - 154, gui.height - 54, 300, 20,
+				new IPAddressTextField(textRenderer, gui.width / 2 - 153, gui.height - 54, 305, 20,
 					portDescLabel, defaultPort);
 		widgetAdder.accept(group.tfwPort);
 	}
