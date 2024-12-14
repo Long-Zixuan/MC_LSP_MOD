@@ -3,34 +3,52 @@ package rikka.lanserverproperties;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+
+import net.minecraft.client.resource.language.I18n;
+
 
 public class IPAddressTextField extends TextFieldWidget
 {
+
 	private final int defaultPort;
 
-	public IPAddressTextField(TextRenderer textRenderer, int x, int y, int width, int height, Text name, int defaultPort)
+	private TextFieldWidget portMsg;
+
+	public IPAddressTextField(TextRenderer textRenderer, int x, int y, int width, int height, Text name, int defaultPort,TextFieldWidget portMsg)
 	{
 		super(textRenderer, x, y, width, height, name);
 		this.defaultPort = defaultPort;
 		this.setText(String.valueOf(this.defaultPort));
 		// Check the format, make sure the text is a valid integer
 		//this.setChangedListener((text) -> this.setEditableColor(validatePort(text) >= 0 ? 0xFFFFFF : 0xFF0000));
-		this.setChangedListener(this::ColLogic);
+		this.setChangedListener(this::colLogic);
+		setMaxLength(5);
+		this.portMsg = portMsg;
 	}
-	private void ColLogic(String text)//条件表达式写这个可读性太差了
+
+	private void colLogic(String text)//条件表达式写这个可读性太差了
 	{
 		if(validatePort(text) >= 0)
 		{
 			if(Integer.parseInt(text) >= 49152)//从49152到65535是动态和/或私有端口，不建议使用
 			{
-				this.setEditableColor(0xed65ff);
+				this.setEditableColor(0xED65FF);
+				this.portMsg.setText(new TranslatableText("lanserverproperties.gui.port_warm").getString());
+				this.portMsg.setCursorToStart();
 				return;
 			}
 			this.setEditableColor(0xFFFFFF);
+			this.portMsg.setText(new TranslatableText("lanserverproperties.gui.no_problem").getString());
+			this.portMsg.setCursorToStart();
 			return;
 		}
-		this.setEditableColor(0xff0000);
+		this.setEditableColor(0xFF0000);
+		this.portMsg.setText(new TranslatableText("lanserverproperties.gui.port_error").getString());
+		this.portMsg.setCursorToStart();
+
 	}
+
 
 	public int getServerPort()
 	{
